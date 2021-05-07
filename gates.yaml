@@ -26,9 +26,7 @@ tags:
 - name: "Dashboard"
   description: "Panel de administración."
 
-
 schemes:
-- "https"
 - "http"
 paths:
   /pet/{petId}/uploadImage:
