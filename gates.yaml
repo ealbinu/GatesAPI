@@ -32,7 +32,7 @@ paths:
   /pet/{petId}/uploadImage:
     post:
       tags:
-      - "pet"
+      - "Viajes"
       summary: "uploads an image"
       description: ""
       operationId: "uploadFile"
