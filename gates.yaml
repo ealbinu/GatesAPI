@@ -3,7 +3,11 @@ info:
   description: "API de proyecto GATES"
   version: "1.0"
   title: "Gates Segutal"
-host: "prepro.segutalmexico.com"
+servers:
+  - url: http://prepro-back-aws.segutalmexico.com/api,
+  description: 'Development'
+  - url: http://my-production-aws.segutalmexico.com/api
+  description: 'Production'
 basePath: "/api"
 tags:
 - name: "Viajes"
@@ -97,6 +101,3 @@ definitions:
         type: "string"
       message:
         type: "string"
-externalDocs:
-  description: ": http://gates.segutalmexico.com:8080/"
-  url: "http://gates.segutalmexico.com:8080/"

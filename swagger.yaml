@@ -1,11 +1,16 @@
-swagger: "2.0"
+openapi: 3.0.1
 info:
   description: "API de proyecto GATES"
   version: "1.0"
   title: "Gates Segutal"
-host: "prepro.segutalmexico.com"
-basePath: "/api"
+servers:
+  - url: http://prepro-back-aws.segutalmexico.com/api
+    description: Development
+  - url: http://my-production-aws.segutalmexico.com/api
+    description: Production
 tags:
+- name: "Auth"
+  description: "Autenticación de usuarios"
 - name: "Viajes"
   description: ""
 - name: "Liquidaciones"
@@ -24,79 +29,28 @@ tags:
   description: "Usuario y Admin."
 - name: "Dashboard"
   description: "Panel de administración."
-schemes:
-- "http"
 paths:
-  /pet:
+
+  /login:
     post:
       tags:
-      - "pet"
-      summary: "Add a new pet to the store"
-      description: ""
-      operationId: "addPet"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      produces:
-      - "application/xml"
-      - "application/json"
+      - Auth
+      summary: Login
       parameters:
-      - in: "body"
-        name: "body"
-        description: "Pet object that needs to be added to the store"
-        required: true
-        schema:
-          $ref: "#/definitions/Pet"
+        - name: email
+          in: query
+          description: Correo electrónico
+          required: true
+          example: albin.rodriguez@segutalmexico.com
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: Contraseña
+          required: true
+          example: qwerty12345
+          schema:
+            type: string
       responses:
-        "405":
-          description: "Invalid input"
-    
-
-definitions:
-  
-  Category:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
-    xml:
-      name: "Category"
-  Pet:
-    type: "object"
-    required:
-    - "name"
-    - "photoUrls"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      category:
-        $ref: "#/definitions/Category"
-      name:
-        type: "string"
-        example: "doggie"
-      photoUrls:
-        type: "array"
-        xml:
-          name: "photoUrl"
-          wrapped: true
-        items:
-          type: "string"
-    xml:
-      name: "Pet"
-  ApiResponse:
-    type: "object"
-    properties:
-      code:
-        type: "integer"
-        format: "int32"
-      type:
-        type: "string"
-      message:
-        type: "string"
-externalDocs:
-  description: ": http://gates.segutalmexico.com:8080/"
-  url: "http://gates.segutalmexico.com:8080/"
+        default:
+          content: {}
