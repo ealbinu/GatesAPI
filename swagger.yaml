@@ -17,6 +17,7 @@ tags:
   description: ""
 - name: "Reportes"
   description: ""
+
 - name: "Finanzas"
   description: ""
 - name: "Registros"
@@ -54,3 +55,21 @@ paths:
       responses:
         default:
           content: {}
+
+  /viajes:
+    get:
+      tags: 
+        - Viajes
+      summary: Obtener viajes paginados
+      parameters:
+        - name: page
+          in: query
+          description: Número de página
+          required: true
+          example: 1
+          schema:
+            type: number
+      responses:
+        default:
+          content: {}
+
